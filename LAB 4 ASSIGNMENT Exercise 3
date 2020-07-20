@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+class Menu{
+String item;
+double price;
+
+public Menu(String item,double price){
+this.item = item;
+this.price = price;
+}
+
+public double getPrice(){
+return price;
+}
+
+public void printItem(){
+System.out.println("\t" + item);
+System.out.print("\tPrice: ");
+
+}
+}
+
+public class MenuArray{
+
+public static void main(String args[]){
+
+Scanner sc = new Scanner(System.in);
+System.out.println("Menu: ");
+System.out.println("------------------------------------------------");
+System.out.println("[1] Nasi Lemak [RM2.00]");
+System.out.println("[2] Roti [RM1.00]");
+System.out.println("[3] Teh Tarik [RM1.50]");
+System.out.println("[4] Kopi O [RM2.00]");
+System.out.println("------------------------------------------------");
+System.out.println("Place order [1-4] or type q to quit");
+
+double price;
+String item;
+int quantity;
+double sum=0;
+
+do{
+System.out.print("Add order: ");
+item = sc.next();
+
+String[] food = {"NASI LEMAK", "ROTI", "TEH TARIK", "KOPI O"};
+double[] foodPrice = {2.00, 1.00, 1.50, 2.00};
+Menu[] menu = new Menu[4];
+for (int i = 0; i < 4; i++) {
+menu[i] = new Menu(food[i], foodPrice[i]);
+}
+switch(item.charAt(0)){
+case '1':
+System.out.print("NASI LEMAK - QUANTITY: ");
+quantity = sc.nextInt();
+menu[0].printItem();
+sum += (menu[0].getPrice() * quantity);
+System.out.println(menu[0].getPrice() * quantity); //total price for menu Nasi Lemak
+System.out.println("");
+break;
+
+case '2':
+System.out.print("ROTI - QUANTITY: ");
+quantity = sc.nextInt();
+menu[1].printItem();
+sum += (menu[1].getPrice() * quantity);
+System.out.println(menu[1].getPrice() * quantity); //total price for Roti
+System.out.println("");
+break;
+
+case '3':
+System.out.print("TEH TARIK - QUANTITY: ");
+quantity = sc.nextInt();
+menu[2].printItem();
+sum += (menu[2].getPrice() * quantity);
+System.out.println(menu[2].getPrice() * quantity); //total price for Teh Tarik
+System.out.println("");
+break;
+
+case '4':
+System.out.print("Kopi O - Quantity: ");
+quantity = sc.nextInt();
+menu[3].printItem();
+sum += (menu[3].getPrice() * quantity);
+System.out.println(menu[3].getPrice() * quantity); //total price for Kopi O
+System.out.println("");
+break;
+
+case 'q':
+System.out.println("");
+System.out.println("Thank you for your order. Have a good day. \n");
+break;
+
+default:
+break;
+
+}
+
+}while(item.charAt(0) != 'q');
+
+System.out.println("Total due: RM" + sum); //total price of orders
+}
+
+}
